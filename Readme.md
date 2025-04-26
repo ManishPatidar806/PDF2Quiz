@@ -16,7 +16,7 @@ The backend is built using **Spring Framework** and follows best practices for s
 ## Technologies Used
 - **Programming Language**: Java
 - **Framework**: Spring Boot
-- **Database**: MySQL (or any other supported relational database)
+- **Database**: MySQL 
 - **Build Tool**: Maven
 - **Version Control**: Git
 
@@ -29,11 +29,11 @@ The backend is built using **Spring Framework** and follows best practices for s
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/ManishPatidar806/PDF2Quiz.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd InternalHackathonProject/Backend
+    cd PDF2Quiz
     ```
 3. Configure this in `application.properties`:
     ```properties
