@@ -1,7 +1,7 @@
 package com.backend.internalhackthon.Exception;
 
-import com.backend.internalhackthon.Response.ErrorResponse;
-import com.backend.internalhackthon.Response.InvalidExceptionResponse;
+import com.backend.internalhackthon.Model.Response.ErrorResponse;
+import com.backend.internalhackthon.Model.Response.InvalidExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

@@ -1,4 +1,4 @@
-package com.backend.internalhackthon.Config;
+package com.backend.internalhackthon.Util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,7 +9,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Configuration
-public class JWTConfig {
+public class Security {
 
     public static final String SECRET_KEY_STRING = "MANISHPATIDARCLASS1221235856ATKSJALFHLASFHALKSDFJL";
     public final Key secretKey = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes());
@@ -25,28 +25,19 @@ public class JWTConfig {
 
     }
 
-    public boolean validateToken(String token) {
-        if (!token.startsWith("Bearer ")) {
-            return false;
-        }
-        token = token.substring(7);
+    public boolean validateToken(String token, String email) {
         Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJwt(token);
-        return true;
+        return email.equals(extractEmail(token));
+
     }
 
-    public String extractEmail(String token) throws Exception {
-        if (!token.startsWith("Bearer ")) {
-            throw new Exception("Invalid Token");
-        }
+    public String extractEmail(String token) {
         token = token.substring(7);
         Claims claims = extractClaims(token);
         return claims.getSubject();
     }
 
-    public String extractRole(String token) throws Exception {
-        if (!token.startsWith("Bearer ")) {
-            throw new Exception("Invalid Token");
-        }
+    public String extractRole(String token) {
         token = token.substring(7);
         Claims claims = extractClaims(token);
         return claims.get("role", String.class); // Ensure the claim key is correct

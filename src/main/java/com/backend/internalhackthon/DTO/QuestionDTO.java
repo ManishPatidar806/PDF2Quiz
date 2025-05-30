@@ -1,10 +1,8 @@
 package com.backend.internalhackthon.DTO;
 
-import com.backend.internalhackthon.Enum.DifficultyLevel;
+import com.backend.internalhackthon.Model.Enum.DifficultyLevel;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class QuestionDTO {

@@ -1,6 +1,6 @@
 package com.backend.internalhackthon.Repository;
 
-import com.backend.internalhackthon.Model.PDF;
+import com.backend.internalhackthon.Model.Entity.PDF;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

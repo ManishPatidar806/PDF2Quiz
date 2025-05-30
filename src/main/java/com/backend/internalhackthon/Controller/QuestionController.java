@@ -1,14 +1,16 @@
 package com.backend.internalhackthon.Controller;
 
 import com.backend.internalhackthon.DTO.PDFDto;
-import com.backend.internalhackthon.Model.PDF;
-import com.backend.internalhackthon.Response.CommonResponse;
-import com.backend.internalhackthon.Response.PdfResponse;
+import com.backend.internalhackthon.Model.Entity.PDF;
+import com.backend.internalhackthon.Model.Response.CommonResponse;
+import com.backend.internalhackthon.Model.Response.PdfResponse;
 import com.backend.internalhackthon.Service.QuestionService;
+import com.backend.internalhackthon.Service.UserDetail;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +30,7 @@ public class QuestionController {
 
     @PostMapping("/upload")
     public ResponseEntity<CommonResponse> uploadPdf(
-            @RequestHeader("Authorization") String token,
+            @AuthenticationPrincipal UserDetail userDetail,
             @RequestParam("pdf") MultipartFile pdf) throws IOException {
         CommonResponse response = new CommonResponse();
 
@@ -45,7 +47,7 @@ public class QuestionController {
 
     @GetMapping("/getallpdf")
     public ResponseEntity<PdfResponse> getPdf(
-            @RequestHeader("Authorization") String token,
+            @AuthenticationPrincipal UserDetail userDetail,
             @RequestParam(defaultValue = "0") Long id) throws IOException {
         PdfResponse response = new PdfResponse();
         List<PDF> pdfs = questionService.getAllPdf(id);

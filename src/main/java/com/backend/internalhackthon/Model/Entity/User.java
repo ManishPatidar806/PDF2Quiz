@@ -1,9 +1,6 @@
-package com.backend.internalhackthon.Model;
+package com.backend.internalhackthon.Model.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -15,11 +12,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     private String name;
 
     private String mobile;
 
+    @Column(unique = true)
     private String email;
 
     private String password;

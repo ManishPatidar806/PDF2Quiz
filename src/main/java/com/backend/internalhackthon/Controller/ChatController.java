@@ -1,10 +1,9 @@
 package com.backend.internalhackthon.Controller;
 
 import com.backend.internalhackthon.DTO.PromptDTO;
-import com.backend.internalhackthon.Response.ChatResponse;
+import com.backend.internalhackthon.Model.Response.ChatResponse;
 import com.backend.internalhackthon.Service.ChatService;
 import jakarta.validation.Valid;
-import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

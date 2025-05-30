@@ -5,27 +5,34 @@ import com.backend.internalhackthon.DTO.UserDTO;
 import com.backend.internalhackthon.DTO.UserUpdateDto;
 import com.backend.internalhackthon.Exception.CommonException;
 import com.backend.internalhackthon.Exception.UserNotFoundException;
-import com.backend.internalhackthon.Model.User;
+import com.backend.internalhackthon.Model.Entity.User;
 import com.backend.internalhackthon.Repository.AuthRepository;
 import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired
-    private AuthRepository authRepository;
 
-    @Autowired
-    private ModelMapper mapper;
+    private final AuthRepository authRepository;
+
+
+    private final ModelMapper mapper;
+
+    public AuthServiceImpl(AuthRepository authRepository, ModelMapper mapper) {
+        this.authRepository = authRepository;
+        this.mapper = mapper;
+    }
 
     @SneakyThrows
     @Override
     public UserDTO signup(UserDTO userDTO) {
-        User user = authRepository.findByEmail(userDTO.getEmail());
-        if (user != null) {
+        Optional<User> user = authRepository.findByEmail(userDTO.getEmail());
+        if (user.isPresent()) {
             throw new CommonException("User is Already exist!");
         }
         User user1 = mapper.map(userDTO, User.class);
@@ -35,10 +42,7 @@ public class AuthServiceImpl implements AuthService {
     @SneakyThrows
     @Override
     public UserDTO login(LoginDto loginDto) {
-        User user = authRepository.findByEmail(loginDto.getEmail());
-        if (user == null) {
-            throw new UserNotFoundException("User is not found!");
-        }
+        User user = authRepository.findByEmail(loginDto.getEmail()).orElseThrow(()->new CommonException("User is not found!"));
         if (!user.getPassword().equals(loginDto.getPassword())) {
             throw new CommonException("Password is Incorrect");
         }
@@ -47,10 +51,7 @@ public class AuthServiceImpl implements AuthService {
 
     @SneakyThrows
     public UserUpdateDto updateProfile(UserUpdateDto updateDto, String email) {
-        User user = authRepository.findByEmail(email);
-        if (user == null) {
-            throw new UserNotFoundException("User is not found!");
-        }
+        User user = authRepository.findByEmail(email).orElseThrow(()->new CommonException("User is not found!"));
         mapper.map(updateDto, user);
         authRepository.save(user);
         return updateDto;

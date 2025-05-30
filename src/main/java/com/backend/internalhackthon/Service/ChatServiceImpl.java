@@ -1,6 +1,5 @@
 package com.backend.internalhackthon.Service;
 
-import com.backend.internalhackthon.Response.ChatResponse;
 import lombok.SneakyThrows;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Autowired;

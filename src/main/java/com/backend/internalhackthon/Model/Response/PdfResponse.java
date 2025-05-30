@@ -1,7 +1,6 @@
-package com.backend.internalhackthon.Response;
+package com.backend.internalhackthon.Model.Response;
 
-import com.backend.internalhackthon.DTO.PDFDto;
-import com.backend.internalhackthon.Model.PDF;
+import com.backend.internalhackthon.Model.Entity.PDF;
 import lombok.Data;
 
 import java.util.List;

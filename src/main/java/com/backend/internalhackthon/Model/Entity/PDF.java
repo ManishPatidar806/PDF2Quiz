@@ -1,4 +1,4 @@
-package com.backend.internalhackthon.Model;
+package com.backend.internalhackthon.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

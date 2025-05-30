@@ -1,4 +1,4 @@
-package com.backend.internalhackthon.Response;
+package com.backend.internalhackthon.Model.Response;
 
 import lombok.Data;
 

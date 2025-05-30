@@ -3,7 +3,7 @@ package com.backend.internalhackthon.Service;
 import com.backend.internalhackthon.DTO.PDFDto;
 import com.backend.internalhackthon.DTO.Question;
 import com.backend.internalhackthon.DTO.QuestionDTO;
-import com.backend.internalhackthon.Model.PDF;
+import com.backend.internalhackthon.Model.Entity.PDF;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
