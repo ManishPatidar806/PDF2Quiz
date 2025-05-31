@@ -9,8 +9,7 @@ The backend is built using **Spring Framework** and follows best practices for s
 - 📄 Upload PDFs – Upload any study material or notes.
 - 🧠 Auto-Generated Quizzes – Get Mcq Question instantly.
 - 🤖 AI Chatbot Support – Ask doubts, get explanations, and learn interactively.
-- 📝 Take Quizzes – Practice generated questions with instant feedback.
-- 📊 Performance Tracking – (Optional) Track your quiz scores and progress.
+- 📝 Take Quizzes – Practice generated questions.
 
 
 ## Technologies Used
