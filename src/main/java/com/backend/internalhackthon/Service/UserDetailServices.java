@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class UserDetailServices implements UserDetailsService {
 
-    AuthRepository authRepository;
+    private final AuthRepository authRepository;
 
     public UserDetailServices(AuthRepository authRepository) {
         this.authRepository = authRepository;

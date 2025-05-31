@@ -25,8 +25,12 @@ import java.util.List;
 @RequestMapping("/api/question")
 public class QuestionController {
 
-    @Autowired
-    private QuestionService questionService;
+
+    private final QuestionService questionService;
+
+    public QuestionController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<CommonResponse> uploadPdf(
@@ -38,7 +42,6 @@ public class QuestionController {
         pdfDto.setPdfData(pdf.getBytes());
         pdfDto.setUserId(1);
         pdfDto.setPdfName(pdf.getOriginalFilename());
-        // System.out.println("pdf dats is "+pdfDto);
         questionService.uploadPdf(pdfDto);
         response.setMessage("PDF uploaded Successfully");
         response.setStatus(true);
@@ -47,7 +50,6 @@ public class QuestionController {
 
     @GetMapping("/getallpdf")
     public ResponseEntity<PdfResponse> getPdf(
-            @AuthenticationPrincipal UserDetail userDetail,
             @RequestParam(defaultValue = "0") Long id) throws IOException {
         PdfResponse response = new PdfResponse();
         List<PDF> pdfs = questionService.getAllPdf(id);

@@ -52,14 +52,14 @@ public class GlobalException {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-//
-//        @ExceptionHandler(Exception.class)
-//        public ResponseEntity<ErrorResponse> handleException () {
-//            ErrorResponse errorResponse = new ErrorResponse();
-//            errorResponse.setStatus(false);
-//            errorResponse.setMessage("Internal Server Error!");
-//            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
+
+        @ExceptionHandler(Exception.class)
+        public ResponseEntity<ErrorResponse> handleException () {
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setStatus(false);
+            errorResponse.setMessage("Internal Server Error!");
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
 
 }

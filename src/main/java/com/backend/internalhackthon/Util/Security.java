@@ -7,10 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.security.Key;
 import java.util.Date;
-
 @Configuration
 public class Security {
-
     public static final String SECRET_KEY_STRING = "MANISHPATIDARCLASS1221235856ATKSJALFHLASFHALKSDFJL";
     public final Key secretKey = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes());
 
@@ -26,13 +24,12 @@ public class Security {
     }
 
     public boolean validateToken(String token, String email) {
-        Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJwt(token);
+        Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
         return email.equals(extractEmail(token));
 
     }
 
     public String extractEmail(String token) {
-        token = token.substring(7);
         Claims claims = extractClaims(token);
         return claims.getSubject();
     }

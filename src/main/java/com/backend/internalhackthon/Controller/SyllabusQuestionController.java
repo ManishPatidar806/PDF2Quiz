@@ -23,8 +23,12 @@ import java.nio.file.StandardCopyOption;
 @RequestMapping("/api/syllabus")
 public class SyllabusQuestionController {
 
-    @Autowired
-    private SyllabusQuestionService service;
+
+    private final SyllabusQuestionService service;
+
+    public SyllabusQuestionController(SyllabusQuestionService service) {
+        this.service = service;
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<JsonNode> uploadFile(@RequestParam("file") MultipartFile file) {

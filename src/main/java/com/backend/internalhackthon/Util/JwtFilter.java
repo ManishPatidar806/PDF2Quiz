@@ -19,11 +19,12 @@ import java.util.Map;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    Security security;
-    UserDetailsService userDetailsService;
+    private final Security security;
+    private final UserDetailsService userDetailsService;
 
-    public JwtFilter(Security security) {
+    public JwtFilter(Security security, UserDetailsService userDetailsService) {
         this.security = security;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -33,9 +34,10 @@ public class JwtFilter extends OncePerRequestFilter {
         String email = null;
         try {
             if (header != null && header.startsWith("Bearer ")) {
-                token = header.substring(7);
+                token = header.substring(7).trim();
                 email = security.extractEmail(token);
             }
+
             if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
                 if (security.validateToken(token, userDetails.getUsername())) {

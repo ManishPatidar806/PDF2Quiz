@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/chatbot")
 public class ChatController {
 
-    @Autowired
-    private ChatService chatService;
+
+    private final ChatService chatService;
+
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
 
     @PostMapping("/generate")
     public ResponseEntity<ChatResponse> generate(@RequestBody @Valid PromptDTO promptDTO) {
